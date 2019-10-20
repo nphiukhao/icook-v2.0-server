@@ -4,8 +4,11 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
-const allRouter = require('./routers/all-recipe-router')
+const allRouter = require('./routers/all-filter-router')
 const addRouter = require('./routers/add-recipe-router')
+const recipeRouter = require('./routers/recipe-router')
+const timeRouter = require('./routers/time-filter-router')
+const authRouter = require('./routers/auth-router')
 
 const app = express()
 
@@ -21,8 +24,11 @@ app.use(helmet())
 app.get('/', (req, res) => {
   res.send('Hello, world!')
 })
+app.use(authRouter)
 app.use(allRouter)
 app.use(addRouter)
+app.use(recipeRouter)
+app.use(timeRouter)
 
 //middleware
 app.use(function errorHandler(error, req, res, next) {

@@ -99,7 +99,7 @@ insert into ingredient (name, recipe_id)
         ('Thai red curry paste', 3),
         ('regular coconut milk', 3),
         ('water', 3),
-        ('Ccoconut or brown sugar', 3),
+        ('Coconut or brown sugar', 3),
         ('soy sauce', 3),
         ('rice vineger or lime juice', 3),
         ('basil', 3),
