@@ -13,14 +13,12 @@ function requireAuth(req, res, next) {
 
         AuthService.getUserByUserName(req.app.get('db'), payload.sub)
             .then(user => {
-                console.log(user)
                 if(!user){
                     return res.status(401).json({
                         error: 'Unauthorized request'
                     })
                 }
                 req.user = user
-                console.log('at the end')
                 next()
             })
             .catch(err => {

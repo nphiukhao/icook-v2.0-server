@@ -120,7 +120,7 @@ insert into ingredient (name, recipe_id)
         ('milk', 6),
         ('chicken broth', 6),
         ('spaghetti or any pasta', 6),
-        ('cherry or grape tomatoes', 6),
+        ('spaghetti or any pasta', 6),
         ('minced garlic', 6),
         ('dried oregano', 6),
         ('salt', 6),

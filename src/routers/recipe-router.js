@@ -1,19 +1,23 @@
 const express = require('express')
 const recipeRouter = express.Router()
-const AllRouterService = require('../services/all-recipe-service')
-const requireAuth = require('../jwt-auth/jwt-auth')
+const AllRecipeService = require('../services/all-recipe-service')
+const jsonParser = express.json()
 
 
 recipeRouter
     .route('/recipe/:id')
     .get((req, res, next) => {
         id = req.params.id
-        console.log('getting recipe by id:', id)
-        AllRouterService.getIngredById(req.app.get('db'), id)
+        AllRecipeService.getIngredById(req.app.get('db'), id)
             .then(ingredients => res.json(ingredients))
             .catch(next)
     })
-    .delete()
+    .patch(jsonParser, (req, res, next) => {
+        let id = req.params.id
+        let newMins = req.body.newMinutes
+        AllRecipeService.updateMinutes(req.app.get('db'), id, newMins)
+        .then(after => res.status(200))
+        .catch(next)
+    })
     
-
 module.exports = recipeRouter

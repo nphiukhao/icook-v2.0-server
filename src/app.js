@@ -9,6 +9,8 @@ const addRouter = require('./routers/add-recipe-router')
 const recipeRouter = require('./routers/recipe-router')
 const timeRouter = require('./routers/time-filter-router')
 const authRouter = require('./routers/auth-router')
+const ingredRouter = require('./routers/ingred-filter-router')
+const deleteRoute = require('./routers/delete-recipe')
 
 const app = express()
 
@@ -21,17 +23,18 @@ app.use(helmet())
 app.use(cors())
 app.use(helmet())
 
-app.get('/', (req, res) => {
-  res.send('Hello, world!')
-})
 app.use(authRouter)
 app.use(allRouter)
 app.use(addRouter)
 app.use(recipeRouter)
 app.use(timeRouter)
+app.use(ingredRouter)
+app.use(deleteRoute)
 
-//middleware
+
 app.use(function errorHandler(error, req, res, next) {
+
+  console.log(error)
     let response
 
     if (NODE_ENV === 'production') {

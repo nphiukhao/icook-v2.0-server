@@ -9,7 +9,7 @@ allRouter
   .get((req, res, next) => {
     AllRecipeService.getAllRecipes(req.app.get('db'))
       .then(recipes => {
-        res.json(recipes)
+        res.json(AllRecipeService.serializeRecipes(recipes))
       })
       .catch(next)
   })
