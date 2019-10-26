@@ -16,7 +16,7 @@ recipeRouter
         let id = req.params.id
         let newMins = req.body.newMinutes
         AllRecipeService.updateMinutes(req.app.get('db'), id, newMins)
-        .then(after => res.status(200))
+        .then(after => res.send(200))
         .catch(next)
     })
     

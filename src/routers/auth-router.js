@@ -36,6 +36,7 @@ authRouter
                         }
                         const subject = dbuser.user_name
                         const payload = {user_id: dbuser.id }
+
                         res.send({
                             authToken: AuthService.createJwt(subject, payload)
                         })
