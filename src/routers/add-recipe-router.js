@@ -15,7 +15,7 @@ addRouter
             error: `Missing '${key}' in request body`
           })
 
-        AllRecipeService.inserNewRecipe(req.app.get('db'), newRecipe)
+        AllRecipeService.insertNewRecipe(req.app.get('db'), newRecipe)
             .then(recipe => {
  
                 const recipe_id = recipe[0].id
@@ -29,7 +29,7 @@ addRouter
                 })
 
 
-                AllRecipeService.inserNewIngredients(req.app.get('db'), ingredientArray, next)
+                AllRecipeService.insertNewIngredients(req.app.get('db'), ingredientArray, next)
                     .then(ings => {
                         res
                         .status(201)

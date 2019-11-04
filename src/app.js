@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-// const cors = require('cors')
+const cors = require('cors')
 const morgan = require('morgan')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
@@ -11,6 +11,7 @@ const timeRouter = require('./routers/time-filter-router')
 const authRouter = require('./routers/auth-router')
 const ingredRouter = require('./routers/ingred-filter-router')
 const deleteRoute = require('./routers/delete-recipe')
+const registerRouter = require('./routers/register-router')
 
 const app = express()
 
@@ -18,7 +19,7 @@ const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
 
-// app.use(cors())
+app.use(cors())
 app.use(morgan(morganOption))
 app.use(helmet())
 
@@ -29,15 +30,16 @@ app.use(recipeRouter)
 app.use(timeRouter)
 app.use(ingredRouter)
 app.use(deleteRoute)
+app.use(registerRouter)
 
 
 app.use(function errorHandler(error, req, res, next) {
   
-  res.header("Access-Control-Allow-Origin", 'icook.nphiukhao.now.sh'); 
-  res.header("Access-Control-Allow-Credentials", true); 
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS'); 
-  res.header("Access-Control-Allow-Headers", 
-    'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  // res.header("Access-Control-Allow-Origin", 'icook.nphiukhao.now.sh'); 
+  // res.header("Access-Control-Allow-Credentials", true); 
+  // res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS'); 
+  // res.header("Access-Control-Allow-Headers", 
+  //   'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
 
 
   console.log(error)
@@ -53,7 +55,8 @@ app.use(function errorHandler(error, req, res, next) {
          console.error(error)
          response = { message: error.message, 
           error,
-          "Access-Control-Allow-Origin": 'https://icook.nphiukhao.now.sh' }
+          //"Access-Control-Allow-Origin": 'https://icook.nphiukhao.now.sh' 
+        }
     }
     res.status(500).json(response)
     })

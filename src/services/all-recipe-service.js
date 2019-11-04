@@ -22,13 +22,13 @@ const AllRecipeService = {
             .where('recipe_id', id)
             
     },
-    inserNewRecipe(db, newRecipe){
+    insertNewRecipe(db, newRecipe){
         return db
             .insert(newRecipe)
             .into('recipe')
             .returning('*')
     },
-    inserNewIngredients(db, newIngredientArray){
+    insertNewIngredients(db, newIngredientArray){
         return db
             .insert(newIngredientArray)
             .into('ingredient')

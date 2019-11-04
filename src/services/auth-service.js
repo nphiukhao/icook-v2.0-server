@@ -22,7 +22,23 @@ const AuthService = {
         return jwt.verify(token, config.JWT_SECRET, {
           algorithms: ['HS256'],
         })
-      }
+    },
+    userNameExists(db, username){
+        return db
+            .from('users')
+            .select('user_name')
+            .where('user_name', username)
+            .first()
+    },
+    hashPassword(password){
+        return bcrypt.hash(password, 12)
+    },
+    saveUser(db, newUser) {
+        return db
+            .insert(newUser)
+            .into('users')
+            .returning('*')
+    }
         
 }
 
