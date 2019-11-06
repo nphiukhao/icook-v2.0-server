@@ -1,5 +1,5 @@
 {
-  "name": "icook-client",
+  "name": "icook-server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
