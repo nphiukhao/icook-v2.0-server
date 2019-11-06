@@ -3,7 +3,7 @@ This ICook server was built using RESTful architecture, PostgreSQL, knex, and ex
 
 ## Links
 Live: https://icook.nphiukhao.now.sh \
-Client repo: https://github.com/nphiukhao/ICook-App-client/blob/master/README.md
+Client repo: https://github.com/nphiukhao/ICook-App-client
 
 Example endpoints include:\
 /login\
